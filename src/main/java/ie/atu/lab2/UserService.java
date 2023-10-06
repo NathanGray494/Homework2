@@ -8,15 +8,10 @@ import org.springframework.stereotype.Service;
 @Service
 @Data
 @AllArgsConstructor
-public class UserService {
+public class UserService
+{
+    @Autowired
     private final EmailService emailService;
-    private String name;
-    private String email;
-
-
-    public UserService() {
-        emailService = new EmailService();
-    }
 
     public String registerUser(String username, String email)
     {

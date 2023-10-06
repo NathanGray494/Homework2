@@ -18,16 +18,25 @@ public class UserController
 
     //http://localhost:8080/user/nathan/g00379837@atuie
     @GetMapping("user/{name}/{email}")
-    public void getUser(@PathVariable String name, @PathVariable String email)
+    public String getUser(@PathVariable String name, @PathVariable String email)
     {
-        userService.setName(name);
-        userService.setEmail(email);
+        return "name: " + name + "email: " + email;
     }
 
+    /*
+       http://localhost:8080/registerUserBody
+       POST
+       Content-Type: application/json
+
+       {
+        "name": "nathan",
+        "email": "G00379837@atuie"
+       }
+     */
     @PostMapping("/registerUserBody")
     @ResponseStatus(HttpStatus.CREATED)
-    public String register(@RequestBody UserService userService)
+    public String register(@RequestBody User user)
     {
-        return userService.registerUser(userService.getName(), userService.getEmail());
+        return userService.registerUser(user.getName(), user.getEmail());
     }
 }
